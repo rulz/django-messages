@@ -19,7 +19,6 @@ class ComposeForm(forms.Form):
     subject = forms.CharField(label=_(u"Subject"), max_length=120)
     body = forms.CharField(label=_(u"Body"),
         widget=forms.Textarea(attrs={'rows': '12', 'cols':'55'}))
-    doc_file = forms.FileField(required=False)
     
         
     def __init__(self, *args, **kwargs):
@@ -33,7 +32,6 @@ class ComposeForm(forms.Form):
         recipients = self.cleaned_data['recipient']
         subject = self.cleaned_data['subject']
         body = self.cleaned_data['body']
-        doc_file = self.cleaned_data['doc_file']
         message_list = []
         for r in recipients:
             msg = Message(
@@ -41,7 +39,6 @@ class ComposeForm(forms.Form):
                 recipient = r,
                 subject = subject,
                 body = body,
-                doc_file = doc_file,
             )
             if parent_msg is not None:
                 msg.parent_msg = parent_msg

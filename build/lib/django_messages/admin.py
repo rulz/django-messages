@@ -34,7 +34,7 @@ class MessageAdminForm(forms.ModelForm):
         model = Message
         fields = ('sender', 'recipient', 'group', 'parent_msg', 'subject',
                 'body', 'sent_at', 'read_at', 'replied_at', 'sender_deleted_at',
-                'recipient_deleted_at', 'doc_file')
+                'recipient_deleted_at')
 
 class MessageAdmin(admin.ModelAdmin):
     form = MessageAdminForm
@@ -48,7 +48,7 @@ class MessageAdmin(admin.ModelAdmin):
         (_('Message'), {
             'fields': (
                 'parent_msg',
-                'subject', 'body', 'doc_file',
+                'subject', 'body',
             ),
             'classes': ('monospace' ),
         }),

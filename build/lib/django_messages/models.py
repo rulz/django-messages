@@ -6,7 +6,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
-PATH_DOC_FILE = getattr(settings, 'PATH_DOC_FILE', 'uploaded/doc_file/%Y/%m/%d/')
 
 
 class MessageManager(models.Manager):
@@ -60,7 +59,6 @@ class Message(models.Model):
     replied_at = models.DateTimeField(_("replied at"), null=True, blank=True)
     sender_deleted_at = models.DateTimeField(_("Sender deleted at"), null=True, blank=True)
     recipient_deleted_at = models.DateTimeField(_("Recipient deleted at"), null=True, blank=True)
-    doc_file = models.FileField(_('Document file'), max_length=255, upload_to=PATH_DOC_FILE, blank=True)
 
     objects = MessageManager()
 

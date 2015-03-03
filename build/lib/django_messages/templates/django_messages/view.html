@@ -1,7 +1,6 @@
 {% extends "django_messages/base.html" %}
 {% load i18n %}
 {% load url from future %}
-{% load msg_tags %}
 
 {% block content %}
 <h1>{% trans "View Message" %}</h1>
@@ -14,11 +13,8 @@
     <dd>{{ message.sent_at|date:_("DATETIME_FORMAT")}}</dd>
     <dt>{% trans "Recipient" %}</dt>
     <dd>{{ message.recipient }}</dd>
-    <dt>{% trans "File" %}</dt>
-    <dd>{{ message.doc_file.url|split:"/" }} - {{ message.doc_file.size|filesizeformat }} <a href="{{ message.doc_file.url }}" download target="_blank" class="btn"><i class="fa fa-cloud-download fa-1x"></i></a></dd>
 </dl>
 {{ message.body|linebreaksbr }}<br /><br />
-
 
 {% ifequal message.recipient.pk user.pk %}
 <a href="{% url 'messages_reply' message.id %}">{% trans "Reply" %}</a>
