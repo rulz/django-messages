@@ -15,7 +15,8 @@
     <dt>{% trans "Recipient" %}</dt>
     <dd>{{ message.recipient }}</dd>
     <dt>{% trans "File" %}</dt>
-    <dd>{{ message.doc_file.url|split:"/" }} - {{ message.doc_file.size|filesizeformat }} <a href="{{ message.doc_file.url }}" download target="_blank" class="btn"><i class="fa fa-cloud-download fa-1x"></i></a></dd>
+    <dd>{% if doc_file %}
+    {{ message.doc_file.url|split:"/" }} - {{ message.doc_file.size|filesizeformat }} <a href="{{ message.doc_file.url }}" download target="_blank" class="btn"><i class="fa fa-cloud-download fa-1x"></i></a>{% else %}{% trans "there is not any" %}{% endif %}</dd>
 </dl>
 {{ message.body|linebreaksbr }}<br /><br />
 
